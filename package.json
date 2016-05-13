@@ -1,0 +1,38 @@
+{
+  "name": "swagger2-to-raml",
+  "version": "0.1.0",
+  "description": "Convert from Swagger 2.0 YAML to RAML 0.8 RAML",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcorral/swagger2toraml.git"
+  },
+  "keywords": [
+    "swagger",
+    "raml",
+    "converter",
+    "swagger2",
+    "raml0.8"
+  ],
+  "author": "amischol@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tcorral/swagger2toraml/issues"
+  },
+  "homepage": "https://github.com/tcorral/swagger2toraml#readme",
+  "dependencies": {
+    "fs-extra": "^0.30.0",
+    "q": "^1.4.1",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0"
+  }
+}
