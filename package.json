@@ -1,6 +1,6 @@
 {
   "name": "swagger2-to-raml",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert from Swagger 2.0 YAML to RAML 0.8 RAML",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tcorral/swagger2toraml.git"
+    "url": "git+https://github.com/tcorral/swagger2-to-raml.git"
   },
   "keywords": [
     "swagger",
@@ -20,9 +20,9 @@
   "author": "amischol@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tcorral/swagger2toraml/issues"
+    "url": "https://github.com/tcorral/swagger2-to-raml/issues"
   },
-  "homepage": "https://github.com/tcorral/swagger2toraml#readme",
+  "homepage": "https://github.com/tcorral/swagger2-to-raml#readme",
   "dependencies": {
     "fs-extra": "^0.30.0",
     "q": "^1.4.1",
