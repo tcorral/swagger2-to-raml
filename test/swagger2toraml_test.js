@@ -154,10 +154,10 @@ exports.swagger2toraml = {
         var yaml2FilePath = path.join(cwd, 'test', 'data', 'other-api.yaml');
         var filePaths = [yaml1FilePath, yaml2FilePath];
         var validOutputPath = path.join(cwd, 'test', 'generated');
-        var generatedFilePath1 = path.join(validOutputPath, 'service-api.raml');
-        var generatedFilePath2 = path.join(validOutputPath, 'other-api.raml');
-        var generatedPaths = [generatedFilePath1, generatedFilePath2];
-        test.expect(6);
+        var expectedFilePath1 = path.join(cwd, 'test', 'expected', 'service-api.raml');
+        var expectedFilePath2 = path.join(cwd, 'test', 'expected', 'other-api.raml');
+        var expectedPaths = [expectedFilePath1, expectedFilePath2];
+        test.expect(4);
         converter(filePaths, validOutputPath)
             .then(
                 function (all) {
@@ -166,10 +166,9 @@ exports.swagger2toraml = {
                     paths = all[0];
                     test.ok(paths.length === 2, 'Check that only one path is returned');
                     paths.forEach(function (filepath, index){
-                        var generatedPath = generatedPaths[index];
+                        var expectedPath = expectedPaths[index];
                         var data = fs.readFileSync(filepath, 'utf8');
-                        var data2 = fs.readFileSync(generatedPath, 'utf8');
-                        test.ok(filepath.indexOf(generatedPath) !== -1, 'Check that the new path contains a raml file');
+                        var data2 = fs.readFileSync(expectedPath, 'utf8');
                         test.ok(data === data2, 'Check that both files the generated and the expected are the same.');
                     });
                     test.done();

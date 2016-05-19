@@ -1,15 +1,57 @@
 #%RAML 0.8
 title: Swagger Petstore
-version: 1.0.0
+version: api
 documentation:
-- title: Swagger Petstore
-  content: A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification
-baseUri: http://petstore.swagger.io/api
+  - title: Swagger Petstore
+    content: >-
+      A sample API that uses a petstore as an example to demonstrate features in
+      the swagger-2.0 specification
+baseUri: 'http://petstore.swagger.io/api'
 schemas:
-- Pet-array: |
-    {
-      "type": "array",
-      "items": {
+  - Pet-array: |
+      {
+        "type": "array",
+        "items": {
+          "id": "Pet",
+          "title": "Pet",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "required": [
+            "name",
+            "id"
+          ]
+        }
+      }
+  - NewPet: |
+      {
+        "id": "NewPet",
+        "title": "NewPet",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+  - Pet: |
+      {
         "id": "Pet",
         "title": "Pet",
         "type": "object",
@@ -30,94 +72,71 @@ schemas:
           "id"
         ]
       }
-    }
-- NewPet: |
-    {
-      "id": "NewPet",
-      "title": "NewPet",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name"
-      ]
-    }
-- Pet: |
-    {
-      "id": "Pet",
-      "title": "Pet",
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "name",
-        "id"
-      ]
-    }
 /pets:
-  /{id}:
+  '/{id}':
     uriParameters:
       id:
         description: ID of pet to fetch
         type: integer
-        default: 
+        default: null
         required: true
         displayName: id
     get:
       displayName: findPetById
-      description: Returns a user based on a single ID, if the user does not have access to the pet
+      description: >-
+        Returns a user based on a single ID, if the user does not have access to
+        the pet
       responses:
-        200:
+        '200':
           description: pet response
           body:
             application/json:
               schema: Pet
-        500:
+        '500':
           description: unexpected error
     delete:
       displayName: deletePet
       description: deletes a single pet based on the ID supplied
       responses:
-        500:
+        '500':
           description: unexpected error
   get:
     displayName: findPets
     description: Returns all pets from the system that the user has access to
     responses:
-      200:
+      '200':
         description: pet response
         body:
           application/json:
             schema: Pet-array
-      500:
+            example: |-
+              [
+                  {
+                      "petName": "Toby",
+                      "birthDate": "07/23/2015",
+                      "birthPlace": "New York",
+                      "id": 1
+                  },
+                  {
+                      "petName": "Floofy",
+                      "startDate": "10/20/2015",
+                      "birthPlace": "Barcelona",
+                      "id": 2
+                  }
+              ]
+      '500':
         description: unexpected error
     queryParameters:
       tags:
         description: tags to filter by
         type: string
-        default: 
+        default: null
         required: false
         displayName: tags
       limit:
         description: maximum number of results to return
         type: integer
-        default: 
+        default: null
         required: false
         displayName: limit
   post:
@@ -127,10 +146,10 @@ schemas:
     displayName: addPet
     description: Creates a new pet in the store.  Duplicates are allowed
     responses:
-      200:
+      '200':
         description: pet response
         body:
           application/json:
             schema: Pet
-      500:
+      '500':
         description: unexpected error

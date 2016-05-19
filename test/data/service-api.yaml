@@ -50,6 +50,16 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Pet"
+          examples:
+            application/json:
+              - petName: Toby
+                birthDate: '07/23/2015'
+                birthPlace: New York
+                id: 1
+              - petName: Floofy
+                startDate: '10/20/2015'
+                birthPlace: Barcelona
+                id: 2
         default:
           description: "unexpected error"
           schema:

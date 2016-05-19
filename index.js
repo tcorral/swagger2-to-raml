@@ -2,6 +2,7 @@ var fs = require('fs-extra');
 var q = require('q');
 var path = require('path');
 var request = require('request');
+var getRAMLWithExamples = require('./libs/add-examples');
 
 var converter = function (swaggerFiles, outputFolder) {
     var deferred = q.defer();
@@ -33,7 +34,17 @@ var converter = function (swaggerFiles, outputFolder) {
                                     if (err) {
                                         deferred.reject(new Error('Something went wrong on creating ' + filename + '.raml file.'));
                                     } else {
-                                        deferred.resolve(newFilePath);
+                                        getRAMLWithExamples(filepath, newFilePath)
+                                            .then(function (ramlYAMLWithExamples) {
+                                                console.log(ramlYAMLWithExamples);
+                                                fs.outputFile(newFilePath, ramlYAMLWithExamples, function (err) {
+                                                    if(err) {
+                                                        deferred.reject(err);
+                                                    } else {
+                                                        deferred.resolve(newFilePath);
+                                                    }
+                                                });
+                                            });
                                     }
                                 });
                             }
